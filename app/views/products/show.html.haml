@@ -1,24 +1,33 @@
 %p#notice= notice
 
-%p
-  %b Name:
-  = @product.name
-%p
-  %b Price:
-  = @product.price
-%p
-  %b Category:
-  = @product.category
-%p
-  %b Product type:
-  = @product.product_type
-%p
-  %b Picture:
-  = @product.picture
-%p
-  %b Description:
-  = @product.description
+.table-responsive
+  %table.table.table-striped.table-bordered.table-hover
+    %tbody
+      %tr
+        %th Name:
+        %td
+          = @product.name
+      %tr
+        %th Price:
+        %td
+          = @product.price
+      %tr
+        %th Category:
+        %td
+          = @product.category
+      %tr
+        %th Product Type:
+        %td
+          = @product.product_type
+      %tr
+        %th Picture:
+        %td
+          = @product.picture
+      %tr
+        %th Description:
+        %td
+          = @product.description
 
-= link_to 'Edit', edit_product_path(@product)
-\|
-= link_to 'Back', products_path
+  = link_to 'Edit', edit_product_path(@product), class: 'btn btn-primary'
+  \|
+  = link_to 'Back', products_path, class: 'btn btn-secondary'
