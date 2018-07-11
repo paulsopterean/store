@@ -6,6 +6,7 @@ class ProductsController < ApplicationController
   end
 
   def show
+    set_product
   end
 
   def new
@@ -17,36 +18,24 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
-
-    respond_to do |format|
-      if @product.save
-        format.html { redirect_to @product, notice: 'Product was successfully created.' }
-        format.json { render :show, status: :created, location: @product }
-      else
-        format.html { render :new }
-        format.json { render json: @product.errors, status: :unprocessable_entity }
-      end
+    if @product.save
+      redirect_to products_path, :notice => "#{@product.name} was successfully created!"
+    else
+      render :new
     end
   end
 
   def update
-    respond_to do |format|
-      if @product.update(product_params)
-        format.html { redirect_to @product, notice: 'Product was successfully updated.' }
-        format.json { render :show, status: :ok, location: @product }
-      else
-        format.html { render :edit }
-        format.json { render json: @product.errors, status: :unprocessable_entity }
-      end
+    if @product.update(product_params)
+      redirect_to products_path, notice: "#{@product.name} was successfully updated."
+    else
+      render products_edit_path
     end
   end
 
   def destroy
     @product.destroy
-    respond_to do |format|
-      format.html { redirect_to products_url, notice: 'Product was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to products_path, notice: "#{@product.name} was successfully destroyed."
   end
 
   private
