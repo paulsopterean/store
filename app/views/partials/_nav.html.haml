@@ -1,0 +1,13 @@
+%div#head-nav.navbar.navbar-fixed-top
+  %div.container-fluid
+    %div.navbar-header
+      %button.navbar-toggle{"data-target" => ".nav-collapse", "data-toggle" => "collapse"}
+        %span.fa.fa-gear
+      %a.navbar-brand{href: "#"}
+        Garagestore
+    %div.navbar-collapse.collapse
+      %ul.nav.navbar-nav
+        %li
+          = link_to "Home", products_path
+        %li
+          = link_to "Products", products_path
